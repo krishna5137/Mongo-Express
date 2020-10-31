@@ -6,11 +6,14 @@
     <title>Products</title>
 </head>
 <body>
-    <h2>Inventory Items</h2>
+    <h2><b><i>Inventory Items</i></b></h2>
     <ul>
         <% for(let product of products) { %> 
-            <li><b> <i><%= product.name %></i> </b></li>
+            <a href="/products/<%= product._id %> ">
+                <li><b> <i><%= product.name %></i> </b></li>
+            </a>    
         <% } %> 
     </ul>
+    <a href="/products/add"><i>Add a product</i></a>
 </body>
 </html>
