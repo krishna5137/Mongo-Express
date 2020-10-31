@@ -6,6 +6,7 @@ const methodOverride = require('method-override')
 
 
 const Product = require('./models/product');
+const categories = ['fruit', 'veggies', 'dairy'];
 /**
  * Establish a connection with MongoDB
  */
@@ -33,20 +34,20 @@ app.get('/products', async (req, res) => {
 })
 
 app.get('/products/add', (req, res) => {
-    res.render('products/add')
+    res.render('products/add', { categories })
 })
 
 app.get('/products/:id/edit', async (req, res) => {
     const { id } = req.params;
     const product = await Product.findById(id);
-    console.log(product)
-    res.render('products/edit', { product })
+    //console.log(product)
+    res.render('products/edit', { product, categories })
 })
 
 app.put('/products/:id', async (req, res) => {
     const { id } = req.params;
     const updateProduct = await Product.findByIdAndUpdate(id, req.body, { runValidators: true, new: true });
-    console.log(updateProduct);
+    //console.log(updateProduct);
     res.redirect(`/products/${updateProduct._id}`);
 })
 
