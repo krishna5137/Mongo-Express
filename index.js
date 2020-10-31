@@ -51,6 +51,13 @@ app.put('/products/:id', async (req, res) => {
     res.redirect(`/products/${updateProduct._id}`);
 })
 
+app.delete('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const deletedProduct = await Product.findByIdAndDelete(id);
+    console.log(deletedProduct);
+    res.redirect('/products')
+})
+
 app.post('/products', async (req, res) => {
     const product = new Product(req.body);
     await product.save();
