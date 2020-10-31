@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Entry</title>
+    <title>Edit Product</title>
 </head>
 <body>
-    <h2><i>Add a new product here</i></h2>
-    <form action="/products" method="POST">
+    <h2><i>Make changes to the product</i></h2>
+    <form action="/products/<%= product._id %>?_method=PUT" method="POST">
         <label for="name"><i><b>Name: </b></i></label>
-        <input type="text" name="name" id="name" placeholder="name">
+        <input type="text" name="name" id="name" placeholder="name" value="<%= product.name %> ">
         <label for="price"><i><b>Price: $</b></i></label>
-        <input type="text" name="price" id="price" placeholder="(per unit)"> 
+        <input type="text" name="price" id="price" placeholder="(per unit)" value="<%= product.price %> ">
         <label for="category"><i><b>Category: </b></i></label>
         <select name="category" id="category">
             <option value="fruit"><i>fruit</i></option>
@@ -21,6 +21,6 @@
     <button>Submit</button>
     </form>
     <br>
-    <a href="/products"><b><i>Cancel</i></b></a>
+    <a href="/products/<%= product._id %> "><b><i>Cancel</i></b></a>
 </body>
 </html>
