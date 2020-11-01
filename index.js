@@ -29,8 +29,14 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 app.use(methodOverride('_method')) // override with POST having ?_method=PUT
 
 app.get('/products', async (req, res) => {
-    const products = await Product.find({});
-    res.render('products/index', { products });
+    const { category } = req.query;
+    if (category) {
+        const products = await Product.find({ category })
+        res.render('products/index', { products, category });
+    } else {
+        const products = await Product.find({});
+        res.render('products/index', { products, category: 'All' });
+    }
 })
 
 app.get('/products/add', (req, res) => {

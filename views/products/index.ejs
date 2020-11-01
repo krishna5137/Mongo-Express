@@ -6,7 +6,7 @@
     <title>Products</title>
 </head>
 <body>
-    <h2><b><i>Inventory Items</i></b></h2>
+    <h2><b><i><%= category %> Items</i></b></h2>
     <ul>
         <% for(let product of products) { %> 
             <a href="/products/<%= product._id %> ">
@@ -15,5 +15,9 @@
         <% } %> 
     </ul>
     <a href="/products/add"><b><i>Add a product</i></b></a>
+    <% if (category !== 'All') { %>
+        <a href="/products"><b><i>Inventory</i></b></a>
+    <% } %>  
+    
 </body>
 </html>
